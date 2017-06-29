@@ -24,8 +24,10 @@
         <filter>
 		  <thingDefs>
             <li>WoodLog</li>
-			<li>Coal</li>
           </thingDefs>
+		  <categories>
+		    <li>Carbon</li>
+		  </categories>
         </filter>
       </fixedStorageSettings>
       <defaultStorageSettings>
@@ -33,8 +35,10 @@
         <filter>
 		  <thingDefs>
             <li>WoodLog</li>
-			<li>Coal</li>
           </thingDefs>
+		  <categories>
+		    <li>Carbon</li>
+		  </categories>
 		  <exceptedThingDefs>
             <li>WoodLog</li>
           </exceptedThingDefs>
