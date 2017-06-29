@@ -52,6 +52,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarbonFuelPatch.cs" />
+    <Compile Include="CompProperties_Scuttlable.cs" />
+    <Compile Include="CompScuttlable.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="PatchOperationAppendInnerText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

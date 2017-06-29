@@ -7,6 +7,7 @@ using Verse.AI;
 namespace BlackFuelNative
 {
     // hook the job for getting fuel - if carbon item is designated, divide the count (for delivery) by 3
+    // sadly we can't hook the CompRefuelable itself since it isn't aware of the thing that the job is going to refuel with
     [HarmonyPatch(typeof(WorkGiver_Refuel))]
     [HarmonyPatch("JobOnThing")]
     [HarmonyPatch(new Type[] { typeof(Pawn), typeof(Thing), typeof(bool) })]
@@ -14,7 +15,7 @@ namespace BlackFuelNative
     {
         static void Postfix(WorkGiver_Refuel __instance, ref Job __result)
         {
-            if (Util.IsCarbonThing(__result.targetB.Thing))
+            if (BlackFuelUtil.IsCarbonThing(__result.targetB.Thing))
                 __result.count /= 3;
         }
 
@@ -28,21 +29,9 @@ namespace BlackFuelNative
     {
         static void Prefix(CompRefuelable __instance, ref Thing fuelThing)
         {
-            if (Util.IsCarbonThing(fuelThing))
+            if (BlackFuelUtil.IsCarbonThing(fuelThing))
                 fuelThing.stackCount *= 3;
         }
 
-    }
-
-    public class Util
-    {
-        public static bool IsCarbonThing(Thing thing)
-        {
-            foreach (var thingCategory in thing.def.thingCategories)
-                if (thingCategory.defName.Equals("Carbon"))
-                    return true;
-
-            return false;
-        }
     }
 }

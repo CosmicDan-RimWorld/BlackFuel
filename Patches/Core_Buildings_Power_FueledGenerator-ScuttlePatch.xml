@@ -1,0 +1,22 @@
+<!-- 
+	Patch Fueled Furnace to accept hopper (for Coal Scuttle) and add Scuttlable CompProperties
+	to enable the pull logic
+-->
+
+<Patch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName = "FueledGenerator"]/building</xpath>
+		<value>
+			<wantsHopperAdjacent>true</wantsHopperAdjacent>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>*/ThingDef[defName = "FueledGenerator"]/comps</xpath>
+		<value>
+			<li Class="BlackFuelNative.CompProperties_Scuttlable">
+				<scuttlePollInTicks>100</scuttlePollInTicks>
+			</li>
+		</value>
+	</Operation>
+</Patch>
