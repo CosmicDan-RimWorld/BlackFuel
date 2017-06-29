@@ -1,0 +1,60 @@
+<!-- 
+	Patches for cuproPanda's Powerless! mod
+-->
+
+<Patch>
+
+	<!-- Move Charcoal to Carbon category so it can take advantage of our changes -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<!-- Make sure POW_Charcoal actually exists -->
+				<xpath>*/ThingDef[defName = "POW_Charcoal"]/thingCategories</xpath>
+			</li>
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef[defName = "POW_Charcoal"]/thingCategories</xpath>
+				<value>
+					<thingCategories>
+						<li>Carbon</li>
+					</thingCategories>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<!-- Patch machines that only accept Charcoal to accept all Carbon, not just Charcoal -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<!-- Only patch machines that accept POW_Charcoal, NOT WoodLog, and are not already patched -->
+				<xpath>*/ThingDef/comps/li[@Class = "CompProperties_Refuelable"]/fuelFilter[thingDefs/li[text() = "POW_Charcoal" and not(text() = "WoodLog")] and not(categories/li[text() = "Carbon"])]</xpath>
+			</li>
+			
+			<!-- 
+				FIRST append the description to specify that these machines only accept Carbon. We do this first so we don't mistakingly append already-patched things
+				Note that while the descriptions for Carbon acceptors are already appended in the Batch patch that patch runs BEFORE this script. Just as well
+				because we want a different description for these carbon-only acceptors.
+			-->
+			<li Class="CosmicDanLib.PatchOperationAppendInnerText">
+				<xpath>*/ThingDef[comps/li[@Class = "CompProperties_Refuelable"]/fuelFilter[thingDefs/li[text() = "POW_Charcoal" and not(text() = "WoodLog")] and not(categories/li[text() = "Carbon"])]]/Description</xpath>
+				<value>
+					<Description>Carbon (Coal or Charcoal) must be used as fuel.</Description>
+				</value>
+			</li>
+			
+			<!-- Now replace whole fuel filter with Carbon category -->
+			<li Class="PatchOperationReplace">
+				<xpath>*/ThingDef/comps/li[@Class = "CompProperties_Refuelable"]/fuelFilter[thingDefs/li[text() = "POW_Charcoal" and not(text() = "WoodLog")] and not(categories/li[text() = "Carbon"])]</xpath>
+				<value>
+					<fuelFilter>
+						<categories>
+							<li>Carbon</li>
+						</categories>
+					</fuelFilter>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>
