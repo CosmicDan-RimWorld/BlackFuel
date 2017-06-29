@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>Coal</defName>
+    <label>coal</label>
+    <description>Doesn't look too nice, but it's good generator fuel.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/Coal</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Metal_Drop</soundInteract>
+    <soundDrop>Metal_Drop</soundDrop>
+    <statBases>
+      <MarketValue>2.0</MarketValue>
+	   <Mass>0.007</Mass>
+	  <MaxHitPoints>150</MaxHitPoints>
+	  <Flammability>1.0</Flammability>
+	  <Beauty>-2</Beauty>
+    </statBases>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+	 <stackLimit>500</stackLimit>
+	 <smallVolume>true</smallVolume>
+  </ThingDef>
+</Defs>

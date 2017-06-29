@@ -1,0 +1,65 @@
+<Patch>
+<!-- Add coal to refuel -->
+
+<!-- FueledGenerator -->
+<Operation Class="PatchOperationInsert">
+		<xpath>//ThingDef[defName = "FueledGenerator"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
+		<value>
+			<li>Coal</li>
+		</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+      <xpath>/Buildings/ThingDef[defName = "FueledGenerator"]/description</xpath>
+      <value>
+         <description>Produces power by consuming wood fuel or coal. Must be fueled by hand.</description>   
+      </value>
+   </Operation>
+
+<!-- FueledStove -->
+<Operation Class="PatchOperationInsert">
+		<xpath>//ThingDef[defName = "FueledStove"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
+		<value>
+			<li>Coal</li>
+		</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+		<xpath>//ThingDef[defName = "FueledStove"]/Description</xpath>
+		<value>
+			<Description>A simple wood or coal fueled stove with an attached countertop for preparing meals.</Description>
+		</value>
+</Operation>
+
+
+<!-- FueledSmithy -->
+<Operation Class="PatchOperationInsert">
+		<xpath>//ThingDef[DefName = "FueledSmithy"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
+		<value>
+			<li>Coal</li>
+		</value>
+</Operation>
+
+<Operation Class="PatchOperationReplace">
+		<xpath>/ThingDefs/ThingDef[DefName = "FueledSmithy"]/Description</xpath>
+		<value>
+			<Description>A wood or coal fueled station equipped for smithing non-mechanical weapons and tools.</Description>
+		</value>
+</Operation>
+
+<!-- Campfire -->
+<Operation Class="PatchOperationInsert">
+		<xpath>//ThingDef[defName = "Campfire"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
+		<value>
+			<li>Coal</li>
+		</value>
+</Operation>
+
+<!-- CoalCampfire -->
+<Operation Class="PatchOperationInsert">
+		<xpath>//ThingDef[defName = "CoalCampfire"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
+		<value>
+			<li>Coal</li>
+		</value>
+</Operation>
+</Patch>
