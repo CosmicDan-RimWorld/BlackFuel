@@ -3,7 +3,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>Coal</defName>
     <label>coal</label>
-    <description>Doesn't look too nice, but it's good generator fuel.</description>
+    <description>Doesn't look too nice, but it's a good fuel source.</description>
     <graphicData>
       <texPath>Things/Item/Resource/Coal</texPath>
       <graphicClass>Graphic_Single</graphicClass>
