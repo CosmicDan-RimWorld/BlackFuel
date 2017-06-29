@@ -41,4 +41,22 @@
 			</li>
 		</operations>
 	</Operation>
+	
+	<!-- Append the description with info about new fuel for all Carbon-fuel patched defs -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<xpath>*/ThingDef[comps/li[@Class = "CompProperties_Refuelable"] and comps/li/fuelFilter/categories/li[text() = "Carbon"]]</xpath>
+			</li>
+			
+			<li Class="CosmicDanLib.PatchOperationAppendInnerText">
+				<xpath>*/ThingDef[comps/li[@Class = "CompProperties_Refuelable"] and comps/li/fuelFilter/categories/li[text() = "Carbon"]]/Description</xpath>
+				<value>
+					<Description>Carbon can be used as fuel for triple the refuel value.</Description>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+	
 </Patch>
