@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ThingCategoryDefs>
+	<!-- Any item put into the Carbon category will be injected as a fuel source that has triple the value as woodlog -->
 	<ThingCategoryDef>
 	  <defName>Carbon</defName>
 	  <label>carbon sources</label>
