@@ -1,65 +1,44 @@
+<!-- 
+	Add Carbon as a fuel source for everything that already takes WoodLog as a fuel source
+-->
+
 <Patch>
-<!-- Add coal to refuel -->
 
-<!-- FueledGenerator -->
-<Operation Class="PatchOperationInsert">
-		<xpath>//ThingDef[defName = "FueledGenerator"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
-		<value>
-			<li>Coal</li>
-		</value>
-</Operation>
+	<!-- First add a categories node to the fuelFilter if it doesn't exist -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<!-- Skip if already patched -->
+				<xpath>*/ThingDef/comps/li[@Class = "CompProperties_Refuelable" and fuelFilter/thingDefs/li[text() = "WoodLog"]]/fuelFilter/categories</xpath>
+				<success>Invert</success>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>*/ThingDef/comps/li[@Class = "CompProperties_Refuelable" and fuelFilter/thingDefs/li[text() = "WoodLog"]]/fuelFilter</xpath>
+				<value>
+					<categories />
+				</value>
+			</li>
+		</operations>
+	</Operation>
 
-<Operation Class="PatchOperationReplace">
-      <xpath>/Buildings/ThingDef[defName = "FueledGenerator"]/description</xpath>
-      <value>
-         <description>Produces power by consuming wood fuel or coal. Must be fueled by hand.</description>   
-      </value>
-   </Operation>
-
-<!-- FueledStove -->
-<Operation Class="PatchOperationInsert">
-		<xpath>//ThingDef[defName = "FueledStove"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
-		<value>
-			<li>Coal</li>
-		</value>
-</Operation>
-
-<Operation Class="PatchOperationReplace">
-		<xpath>//ThingDef[defName = "FueledStove"]/Description</xpath>
-		<value>
-			<Description>A simple wood or coal fueled stove with an attached countertop for preparing meals.</Description>
-		</value>
-</Operation>
-
-
-<!-- FueledSmithy -->
-<Operation Class="PatchOperationInsert">
-		<xpath>//ThingDef[DefName = "FueledSmithy"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
-		<value>
-			<li>Coal</li>
-		</value>
-</Operation>
-
-<Operation Class="PatchOperationReplace">
-		<xpath>/ThingDefs/ThingDef[DefName = "FueledSmithy"]/Description</xpath>
-		<value>
-			<Description>A wood or coal fueled station equipped for smithing non-mechanical weapons and tools.</Description>
-		</value>
-</Operation>
-
-<!-- Campfire -->
-<Operation Class="PatchOperationInsert">
-		<xpath>//ThingDef[defName = "Campfire"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
-		<value>
-			<li>Coal</li>
-		</value>
-</Operation>
-
-<!-- CoalCampfire -->
-<Operation Class="PatchOperationInsert">
-		<xpath>//ThingDef[defName = "CoalCampfire"]/comps/li[contains(@Class,'CompProperties_Refuelable')]/fuelFilter/thingDefs/li</xpath>
-		<value>
-			<li>Coal</li>
-		</value>
-</Operation>
+	<!-- Now actually add the Carbon category as an alternative fuel source to WoodLog -->
+	<Operation Class="PatchOperationSequence">
+		<success>Always</success>
+		<operations>
+			<li Class="PatchOperationTest">
+				<!-- Skip if already patched -->
+				<xpath>*/ThingDef/comps/li[@Class = "CompProperties_Refuelable" and fuelFilter/categories/li[text() = "Carbon"]]</xpath>
+				<success>Invert</success>
+			</li>
+			
+			<li Class="PatchOperationAdd">
+				<!-- Inject Carbon fuel source alongside WoodLog -->
+				<xpath>*/ThingDef/comps/li[@Class = "CompProperties_Refuelable" and fuelFilter/thingDefs/li[text() = "WoodLog"]]/fuelFilter/categories</xpath>
+				<value>
+					<li>Carbon</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
 </Patch>
