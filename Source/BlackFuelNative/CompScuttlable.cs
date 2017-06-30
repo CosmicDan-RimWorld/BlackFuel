@@ -71,8 +71,6 @@ namespace BlackFuelNative
                         compRefuelable.Refuel(fuelThingValue);
                         fuelThing.stackCount -= fuelNeeded;
                     }
-
-
                 }
             }
         }
